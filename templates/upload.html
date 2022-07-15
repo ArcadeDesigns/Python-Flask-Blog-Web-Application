@@ -1,0 +1,34 @@
+		#check for profile pic
+		if request.files['profile_pic']:
+			name_to_update.profile_pic = request.files['profile_pic']
+
+			#Grab Image name
+			pic_filename = secure_filename(name_to_update.profile_pic.filename)
+
+			#set the uuid
+			pic_name = str(uuid.uuid1()) + "_" + pic_filename
+			
+			#save the image
+			saver = request.files['profile_pic']
+
+			#change it to a String to save to db
+			name_to_update.profile_pic = pic_name
+
+			try:
+				db.session.commit()
+				saver.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
+				flash("User Updated Successfully !")
+				return render_template("update.html",
+					form=form,
+					name_to_update = name_to_update)
+			except:
+				flash("Error! Looks Like There Was a Problem... Try Again!")
+				return render_template("update.html",
+					form=form,
+					name_to_update = name_to_update)
+		else:
+			db.session.commit()
+			flash("User Updated Successfully !")
+			return render_template("update.html",
+				form=form,
+				name_to_update = name_to_update)

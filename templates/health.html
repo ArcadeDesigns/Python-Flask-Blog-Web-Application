@@ -1,0 +1,277 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+  <header>
+    <div class="header-content">
+      <h1> Welcome To Hog...Home.Office.Garden...</h1>
+      <div class="line"></div>
+      <p> Unique Designs and setup for your Lifestyle</p>
+    </div>
+  </header>
+
+  <section class="">
+    <div class="row">
+      <div class="col-md-8">
+        <h3 class="display-header">View Our Posts</h3>
+        {% for message in get_flashed_messages() %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Hey {{ name }} - {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+
+        
+          <div class="post-box-box container">
+            {% if health.file %}
+              <img src="{{url_for ('static', filename='images/' + health.file)}}" class="post-img-img">
+            {% else %}
+              <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}" class="post-img">
+            {% endif %}
+
+            <h1 class="post-title-header"> {{ health.title | upper }}</h1>
+            <span class="post-date">{{ health.date_posted }}</span>
+            <p class="post-title-content"> {{ health.content | safe }} </p>
+
+            <!------------profile------------>
+            <div class="profile">
+              {% if current_user.profile_pic %}
+              <img src="{{url_for ('static', filename='images/' + current_user.profile_pic)}}" class="profile-img">
+              {% else %}
+              <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}" class="profile-img">
+              {% endif %}
+              <span class="profile-name">{{ health.poster.name }}</span>
+            </div>
+
+              <a href="{{ url_for('healths') }}" class="btn btn-outline-secondary btn-sm"> View More Post </a>
+
+              {% if health.poster_id == current_user.id or current_user.id == 1 %}
+                <a href="{{ url_for('edit_health', id=health.id) }}" class="btn btn-outline-success btn-sm"> Edit Post </a>
+                <a href="{{ url_for('delete_health', id=health.id) }}" class="btn btn-outline-danger btn-sm"> Delete Post </a>
+              {% endif %}
+
+              <!-------share-------->
+            <div class="share-post">
+                <span class="share-title-post">Share this Article</span>
+                <div class="social-post">
+                    <a href="https://www.facebook.com"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://www.twitter.com"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.instagram.com"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://www.linkedin.com"><i class="bx bxl-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="ads-section-post">
+              <div class="ads-section-box-post">
+                <img src="{{url_for ('static', filename='images/ads1.jpg')}}">
+                <div class="ads-footer-post">
+                  <h3> Testing the Advert Section </h3>
+                  <span> Get Ads Placed Here </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+
+      <div class="col-md-4">
+        <div class="ads-section">
+          <h2> Ads</h2>
+            <div class="ads-section-box">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="{{ url_for('static', filename= 'images/ads1.jpg') }}" class="post-img"></a>
+                </div>
+
+                <div class="col-md-6">
+                  <h3>Advert Placement</h3>
+                  <p> Purchase It Now </p>
+                  <button href="#"><i class="fas fa-shop"></i> Show Now</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="post container">
+          <section class="side-bar">
+            <h3>Quick Facts</h3>
+            <div class="line-side-bar"></div>
+
+            <li><a href=""> Our Team</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Submit a Story</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">About Advertising with Us</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Disclaimer</a></li>
+            <div class="horizontal-line"></div>
+          </section>
+
+          <h3>Latest Post Updates</h3>
+          <div class="line-side-bar"></div>
+
+          {% for green in greens %}
+          <div class=" hero-post">
+            <a href="{{ url_for('green', id=green.id) }}" class="post-title"> {{ green.title | title }}
+            <img src="{{url_for ('static', filename='images/' + green.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Green Living and Plants <br> <a href="{{ url_for('greens') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for essay in essays %}
+          <div class=" hero-post">
+            <a href="{{ url_for('essay', id=essay.id) }}" class="post-title"> {{ essay.title | title }}
+            <img src="{{url_for ('static', filename='images/' + essay.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on DIY <br> <a href="{{ url_for('essays') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for idea in ideas %}
+          <div class=" hero-post">
+            <a href="{{ url_for('idea', id=idea.id) }}" class="post-title"> {{ idea.title | title }}
+            <img src="{{url_for ('static', filename='images/' + idea.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Your Ideas and Inspirations <br> <a href="{{ url_for('ideas') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for post in posts %}
+          <div class=" hero-post">
+            <a href="{{ url_for('post', id=post.id) }}" class="post-title"> {{ post.title | title }}
+            <img src="{{url_for ('static', filename='images/' + post.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Gardening Tips <br> <a href="{{ url_for('posts') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for business in businesses %}
+          <div class=" hero-post">
+            <a href="{{ url_for('business', id=business.id) }}" class="post-title"> {{ business.title | title }}
+            <img src="{{url_for ('static', filename='images/' + business.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Your News and Events section <br> <a href="{{ url_for('businesses') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for design in designs %}
+          <div class=" hero-post">
+            <a href="{{ url_for('design', id=design.id) }}" class="post-title"> {{ design.title | title }}
+            <img src="{{url_for ('static', filename='images/' + design.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Your Home Designs and Small spaces <br> <a href="{{ url_for('designs') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for finance in finances %}
+          <div class=" hero-post">
+            <a href="{{ url_for('finance', id=finance.id) }}" class="post-title"> {{ finance.title | title }}
+            <img src="{{url_for ('static', filename='images/' + finance.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Your Buying Guide <br> <a href="{{ url_for('finances') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <div class="horizontal-line"></div>
+
+          {% for organise in organises %}
+          <div class=" hero-post">
+            <a href="{{ url_for('organise', id=organise.id) }}" class="post-title"> {{ organise.title | title }}
+            <img src="{{url_for ('static', filename='images/' + organise.file)}}"></a>
+          </div>
+          {% else %}
+          <div class="hero-alternative">
+            <li>No Latest Update on Your Organising and Cleaning <br> <a href="{{ url_for('organises') }}"> View All post in this Section</a></li>
+          </div>
+          {% endfor %}
+
+          <section class="side-bar">
+            <h3>Menu</h3>
+            <div class="line-side-bar"></div>
+
+            <li><a href="">Home</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Office</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Garden</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Others</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Service</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Blog</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Sell</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">HOG Pay</a></li>
+            <div class="horizontal-line"></div>
+
+            <li><a href="">Track it</a></li>
+            <div class="horizontal-line"></div>
+          </section>
+
+          <section class="side-bar">
+            <h3>Service</h3>
+            <div class="line-side-bar"></div>
+
+            <li><a href="">Auction</a></li>
+            <div class="horizontal-line"></div>
+            
+            <li><a href="">Maintenance</a></li>
+            <div class="horizontal-line"></div>
+            
+            <li><a href="">Subscription</a></li>
+            <div class="horizontal-line"></div>
+            
+            <li><a href="">Testimonials</a></li>
+            <div class="horizontal-line"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <section class="display"> 
+      <h3> Hog TV <br>
+        <div class="line"></div>
+      </h3>
+
+      <video src="{{ url_for('static', filename= 'images/video.mp4') }}" width="60%" height="400px" controls="autoplay"></video>
+    </section> 
+  </section>
+{% endblock %}

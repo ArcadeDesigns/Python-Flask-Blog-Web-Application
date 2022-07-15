@@ -1,0 +1,85 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+	{% if current_user.is_authenticated %}
+		<div class="container">
+			<!----Home----->
+			<section class="home" id="home">
+				<div class="home-text container">
+					<h2 class="home-title logo">Home Office <span> Garden </span></h2>
+					<span class="home-subtitle"> Admin Use Only </span>
+				</div>
+			</section>
+
+			{% for message in get_flashed_messages() %}
+
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					Hey {{ name }} - {{ message }}
+			  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+				</div>
+
+			{% endfor %}
+			<br/>
+			<br/>
+
+			<h1 class='logo'><center>Add a Post to <span>Trending Column</span></center></h1>
+			<br/>
+			<div class="shadow p-3 mb-5 bg-body rounded">
+				<h2 class="logo"> How to Make a Post</h2>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>
+			</div>
+
+			<div class="shadow p-3 mb-5 bg-body rounded">
+				<form method="POST" type='file' name='file' action="" enctype="multipart/form-data">
+
+					{{ form.hidden_tag() }}
+
+
+					{{ form.title.label (class="form-label") }}
+					{{ form.title(class="form-control") }}
+					<br/>
+
+					{{ form.category.label (class="form-label") }}
+					{{ form.category(class="form-control") }}
+					<br/>
+
+					{{ form.slug.label (class="form-label") }}
+					{{ form.slug(class="form-control") }}
+					<br/>
+
+					{{ form.file.label (class="form-label") }}
+					<input type="file" name="file" action="/" class="form-control" autocomplete="off">
+					<br/>
+
+					{{ form.alt.label (class="form-label") }}
+					{{ form.alt(class="form-control") }}
+					<br/>
+
+					{{ form.content.label (class="form-label") }}
+					{{ form.content(class="form-control", rows="15") }}
+					<br/>
+
+
+					{{ form.submit(class="btn btn-secondary") }}
+
+
+				</form>
+
+				{{ ckeditor.load() }}
+	 			{{ ckeditor.config(name='content') }}
+
+			</div>
+		</div>
+
+	{% else %}
+
+	<h2> You Must Be Logged In... </h2>
+	<p> To gain Access, Login or click on the link below to sign up, If you do not have an Account... </p>
+	<br/>
+	<a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-sm"> Login Here </a> 
+	<a href="{{ url_for('add_user') }}" class="btn btn-outline-secondary btn-sm"> Register an Account </a> 
+
+	{% endif%}
+
+{% endblock %}

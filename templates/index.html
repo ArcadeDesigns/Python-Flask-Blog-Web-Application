@@ -1,0 +1,716 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<header>
+  <div class="header-content">
+    <h1> Welcome To Hog...Home.Office.Garden...</h1>
+    <div class="line"></div>
+    <p> Unique Designs and setup for your Lifestyle</p>
+  </div>
+</header>
+
+<section class="container">
+  <h3>Learn More About Us Here</h3>
+  <P>At Hog-Home.Office.Garden we offer distinctive services in an informal, friendly setting. Our Interior Decoration and design services are top notch and our customers enjoys from a reputation of impeccable services, elegant Western-style décor, and exquisite taste in green interior design. Check out our gallery and see the professionalism we put into our design creating an atmosphere that best fit your taste guided by our description from professional interior decorating expert.</P>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="container-box">
+        <h4>Decoration for Homes</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia id distinctio aperiam mollitia commodi illum, dolore, vitae quidem molestiae cum labore! Voluptatem, tenetur? Corporis esse possimus dicta voluptates hic porro. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque reprehenderit qui eaque. Qui, explicabo dignissimos sequi similique soluta ad minus? Aspernatur optio dolores ducimus veniam repellat quis vitae distinctio perferendis.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="container-box">
+        <h4>Office Interior designs</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia id distinctio aperiam mollitia commodi illum, dolore, vitae quidem molestiae cum labore! Voluptatem, tenetur? Corporis esse possimus dicta voluptates hic porro. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque reprehenderit qui eaque. Qui, explicabo dignissimos sequi similique soluta ad minus? Aspernatur optio dolores ducimus veniam repellat quis vitae distinctio perferendis.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="container-box">
+        <h4>Garden Interior Decor</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia id distinctio aperiam mollitia commodi illum, dolore, vitae quidem molestiae cum labore! Voluptatem, tenetur? Corporis esse possimus dicta voluptates hic porro. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit rerum, commodi voluptates aliquam hic, cupiditate blanditiis ipsum assumenda omnis, eum at dolores dolorum unde sapiente. Harum voluptatem sed</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% for advertthree in advertthrees %}
+  <div class="ads-header-section">
+    <div class="ads-header-section-box">
+      <div class="row">
+        <div class="col-md-8">
+          {% if advertthree.file %}
+            <img src="{{url_for ('static', filename='images/' + advertthree.file)}}">
+          {% else %}
+            <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+          {% endif %}
+        </div>
+
+        <div class="col-md-4">
+          <h3> {{ advertthree.title }} </h3>
+          <span> {{ advertthree.content | safe }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+    {% if advertthree.poster_id == advertthree.current_user or current_user.id == 1 %}
+      <a href="{{ url_for('advertthree', id=advertthree.id) }}" class="btn btn-outline-secondary btn-sm"> View Ads </a>
+      <a href="{{ url_for('edit_advertthree', id=advertthree.id) }}" class="btn btn-outline-success btn-sm"> Edit Ads </a>
+      <a href="{{ url_for('delete_advertthree', id=advertthree.id) }}" class="btn btn-outline-danger btn-sm"> Delete Ads </a>
+    {% endif %}
+
+{% else %}
+  <div class="display-ads container">
+    <h3> Purchase the Ads Section for a Month by Subscribing to our Platform. </h3>
+    <a href="#" class="display-ads-link"> Get Started </a>
+  </div>
+{% endfor %}
+
+<section class="">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row">
+        <div class="mobile-view container">
+          <h1> Latest Blog Post </h1>
+          <div class="line-side-bar"></div>
+          <div class="row">
+            {% for finance in finances %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if finance.file %}
+                      <img src="{{url_for ('static', filename='images/' + finance.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('finance', id=finance.id) }}" class="post-title"> {{ finance.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% for health in healths %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if health.file %}
+                      <img src="{{url_for ('static', filename='images/' + health.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('health', id=health.id) }}" class="post-title"> {{ health.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% for post in posts %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if post.file %}
+                      <img src="{{url_for ('static', filename='images/' + post.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('post', id=post.id) }}" class="post-title"> {{ post.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% for design in designs %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if design.file %}
+                      <img src="{{url_for ('static', filename='images/' + design.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('design', id=design.id) }}" class="post-title"> {{ design.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="mobile-view container">
+          <h1> Other Trending Blog Post </h1>
+          <div class="line-side-bar"></div>
+          <div class="row">
+            {% for green in greens %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if green.file %}
+                      <img src="{{url_for ('static', filename='images/' + green.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('green', id=green.id) }}" class="post-title"> {{ green.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% for organise in organises %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if organise.file %}
+                      <img src="{{url_for ('static', filename='images/' + organise.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('organise', id=organise.id) }}" class="post-title"> {{ organise.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% for essay in essays %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if essay.file %}
+                      <img src="{{url_for ('static', filename='images/' + essay.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('essay', id=essay.id) }}" class="post-title"> {{ essay.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% for business in businesses %}
+              <div class="col-md-3">
+                <div class="hero-box">
+                  <div class="hero-imgs">
+                    {% if business.file %}
+                      <img src="{{url_for ('static', filename='images/' + business.file)}}">
+                    {% else %}
+                      <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+                    {% endif %}
+                  </div>
+
+                  <div class="hero-title">
+                    <a href="{{ url_for('business', id=business.id) }}" class="post-title"> {{ business.title | title }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <h3 class="display-header">View Our Blog Sections </h3>
+      <div class="line"></div>
+      <div class="index-container">
+        <div class="row">
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog2.jpg') }}" class="post-img"></a>
+
+                <a href="{{ url_for('essays') }}" class="post-title"> DIY (Do It Yourself)</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog2.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog3.jpg') }}" class="post-img"></a>
+
+               <a href="{{ url_for('healths') }}" class="post-title"> Health & Wellness</a>
+               <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog3.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog4.jpg') }}" class="post-img"></a>
+
+                <a href="{{ url_for('ideas') }}" class="post-title"> Ideas and Inspirations</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog4.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog5.jpg') }}" class="post-img"></a>
+            
+                <a href="{{ url_for('businesses') }}" class="post-title"> News and Events</a></li>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog5.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog6.jpg') }}" class="post-img"></a>
+
+                <a href="{{ url_for('contribute') }}" class="post-title"> Organising & Cleaning</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog6.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box">
+                <img src="{{ url_for('static', filename= 'images/hog7.jpg') }}" class="post-img"></a>
+                
+                <a href="{{ url_for('greens') }}" class="post-title"> Plants</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog7.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog8.jpg') }}" class="post-img"></a>
+                
+                <a href="{{ url_for('posts') }}" class="post-title"> Gardening Tips</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog8.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog1.jpg') }}" class="post-img"></a>
+                
+                <a href="{{ url_for('designs') }}" class="post-title"> Small Spaces</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog1.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog1.jpg') }}" class="post-img"></a>
+
+                <a href="{{ url_for('finances') }}" class="post-title"> Buying Guide</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog1.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog2.jpg') }}" class="post-img"></a>
+                
+                <a href="{{ url_for('contribute') }}" class="post-title"> HOG TV</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog2.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-4">
+            <section class="post container">
+              <!----post box Getting_Things_Done_The_Art_of_Stress_Free_Productivity_by_David--------->
+              <div class="post-box book">
+                <img src="{{ url_for('static', filename= 'images/hog4.jpg') }}" class="post-img"></a>
+                
+                <a href="{{ url_for('contribute') }}" class="post-title"> Submit a Story</a>
+                <span class="post-date">6th 0f April 2022</span>
+                <p class="post-description">
+                  A certain degree of agreement coming to a place of peace with the
+                  choices we make on a daily basis which could make or break the future
+                  interest we hope to accomplish. Getting Things Done, the act of stress
+                  free productivity is a great read, indulge yourself and enjoy every
+                  moment you spend with this book.
+                </p>
+
+                <!------------profile------------>
+                <div class="profile">
+                  <img src="{{ url_for('static', filename= 'images/hog4.jpg') }}" class="profile-img"></a>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="ads-section-mainpage">
+          <h2> Ads</h2>
+
+          {% for advertone in advertones %}
+            <div class="ads-section-box-mainpage">
+              {% if advertone.file %}
+                <img src="{{url_for ('static', filename='images/' + advertone.file)}}" class="post-img">
+              {% else %}
+                <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}" class="post-img">
+              {% endif %}
+                <p> {{ advertone.percentage }} <span>{{ advertone.deal }}</span></p>
+
+                <div class="ads-footer-mainpage">
+                  <h3> {{ advertone.title }} </h3>
+                  <span> {{ advertone.content | safe }}</span>
+                  <p> Purchase it Now</p>
+                  <button href="advertone.link"><i class="fas fa-shop"></i> Show Now</button>
+                </div>
+            </div>
+
+            {% if advertone.poster_id == advertone.current_user or current_user.id == 1 %}
+              <a href="{{ url_for('advertone', id=advertone.id) }}" class="btn btn-outline-secondary btn-sm"> View Ads </a>
+              <a href="{{ url_for('edit_advertone', id=advertone.id) }}" class="btn btn-outline-success btn-sm"> Edit Ads </a>
+              <a href="{{ url_for('delete_advertone', id=advertone.id) }}" class="btn btn-outline-danger btn-sm"> Delete Ads </a>
+            {% endif %}
+          {% else %}
+
+            <div class="display-ads">
+              <h2> Display Adverts Here</h2>
+              <a href="#" class="display-ads-link"> Get Started</a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <br/>
+      <br/>
+      <div class="vertical-line"></div>
+      <div class="post container">
+        <section class="border-box">
+          <div class="border-box-form">
+            <h3 class="home-subtitle">Subscribe to our newsletter</h3>
+            <p class="home-subtitle"> Subscribe to get notified about product launches, special offers and news. </p>
+
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+              <div class="col-12">
+                <label class="visually-hidden" for="inlineFormInputGroupUsername">Email : </label>
+                <div class="input-group">
+                  <div class="input-group-text">@</div>
+                  <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Email Address">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-danger">Submit</button>
+              </div>
+            </form>
+
+            <br/>
+            <p> 100% free. Your can also Unsubscribe at anytime. </p>
+          </div>
+
+          <div class="share post-container">
+            <span class="share-title">Contact Us Via Social Media</span>
+            <div class="social">
+              <a href="https://www.facebook.com/folayemi.ebire"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.twitter.com/@_simplimism"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.instagram.com/ebire_folayemi"><i class="bx bxl-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/folayemi-ebire-2b9410190"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-bar">
+          <h3>Quick Facts</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href=""> Our Team</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Submit a Story</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">About Advertising with Us</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Disclaimer</a></li>
+          <div class="horizontal-line"></div>
+        </section>
+
+        <div class="ads-section-homepage">
+            {% for advertfour in advertfours %}
+              <h2>Ads</h2>
+              <div class="ads-section-box-homepage">
+                {% if advertfour.file %}
+                  <img src="{{url_for ('static', filename='images/' + advertfour.file)}}" class="post-img">
+                {% else %}
+                  <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}" class="post-img">
+                {% endif %}
+
+                <h3> {{ advertfour.title }} </h3>
+                <span> {{ advertfour.content | safe }}</span>
+                <button href="#"><i class="fas fa-shop"></i> Show Now</button>
+              </div>
+
+                {% if advertfour.poster_id == advertfour.current_user or current_user.id == 1 %}
+                  <a href="{{ url_for('advertfour', id=advertfour.id) }}" class="btn btn-outline-secondary btn-sm"> View Ads </a>
+                  <a href="{{ url_for('edit_advertfour', id=advertfour.id) }}" class="btn btn-outline-success btn-sm"> Edit Ads </a>
+                  <a href="{{ url_for('delete_advertfour', id=advertfour.id) }}" class="btn btn-outline-danger btn-sm"> Delete Ads </a>
+                {% endif %}
+            {% else %}
+
+              <div class="display-ads">
+                <h3> Purchase the Ads Section for a Month by Subscribing to our Platform. </h3>
+                <a href="#" class="display-ads-link"> Get Started </a>
+              </div>
+          {% endfor %}
+        </div>
+
+        <section class="side-bar">
+          <h3>Menu</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href="">Home</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Office</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Garden</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Others</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Service</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Blog</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Sell</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">HOG Pay</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Track it</a></li>
+          <div class="horizontal-line"></div>
+
+        </section>
+
+        <section class="side-bar">
+          <h3>Service</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href="">Auction</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Maintenance</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Subscription</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Testimonials</a></li>
+          <div class="horizontal-line"></div>
+        </section>
+
+        <div class="ads-section-homepage">
+          <h2> Ads</h2>
+            {% for adverttwo in adverttwos %}
+
+              <div class="ads-section-box-homepage">
+                {% if adverttwo.file %}
+                  <img src="{{url_for ('static', filename='images/' + adverttwo.file)}}" class="post-img">
+                {% else %}
+                  <img src="{{url_for ('static', filename='images/defaultuser.jpg')}}" class="post-img">
+                {% endif %}
+
+                <h3> {{ adverttwo.title }} </h3>
+                <span> {{ adverttwo.content | safe }}</span>
+                <button href="#"><i class="fas fa-shop"></i> Show Now</button>
+              </div>
+
+                {% if adverttwo.poster_id == adverttwo.current_user or current_user.id == 1 %}
+                  <a href="{{ url_for('adverttwo', id=adverttwo.id) }}" class="btn btn-outline-secondary btn-sm"> View Ads </a>
+                  <a href="{{ url_for('edit_adverttwo', id=adverttwo.id) }}" class="btn btn-outline-success btn-sm"> Edit Ads </a>
+                  <a href="{{ url_for('delete_adverttwo', id=adverttwo.id) }}" class="btn btn-outline-danger btn-sm"> Delete Ads </a>
+                {% endif %}
+            {% else %}
+
+              <div class="display-ads">
+                <h3> Purchase the Ads Section for a Month by Subscribing to our Platform. </h3>
+                <a href="#" class="display-ads-link"> Get Started </a>
+              </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <section class="display"> 
+    <h3> Hog TV <br>
+      <div class="line"></div>
+    </h3>
+
+    <video src="{{ url_for('static', filename= 'images/video.mp4') }}" width="60%" height="400px" controls="autoplay"></video>
+  </section> 
+</section>
+
+
+{% endblock %}

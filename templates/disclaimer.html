@@ -1,0 +1,166 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+	<div class="container">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="{{ url_for('static', filename= 'images/google.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+				</div>
+
+				<div class="carousel-item">
+					<img src="{{ url_for('static', filename= 'images/author.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+				</div>
+
+				<div class="carousel-item">
+					<img src="{{ url_for('static', filename= 'images/favicon.png') }}" class="d-block w-100" alt="..." width=1000 max-width="950px" border-radius="20px">
+				</div>
+			</div>
+
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</div>
+
+	<!-----posts------>
+    <section class="post-content post-container">
+      <h2 class="sub-heading">The Disclaimer Post</h2>
+      <p class="post-text">
+        Please read this disclaimer (“declaration of ownership and
+        acknowledgement of intellectual properties”) carefully before using
+        [https://www.quinndaisies.com] website (“Quinn-Daisies”, “Simplimism
+        Services”) operated by [EbireFolayemi Michael] (“Quinn-Daisies,
+        Simplimism” and “the website” are intellectual property of the author
+        EbireFolayemi Michael).
+      </p>
+      <p class="post-text">
+        The content displayed on the website is the intellectual property of the
+        [pexel for some of the images shown, Amazon ebooks, and Amazon Kindle
+        for some of the free books here for download, EbireFolayemi Michael for
+        some of the articles and blog post as well as content available on the
+        web site, while others are gotten or downloaded from free source on the
+        Internet]. You may not reuse, republish, or reprint such content without
+        our written consent.
+      </p>
+      <p class="post-text">
+        All information posted is merely for educational and informational
+        purposes. It is not intended as a substitute for professional advice.
+        Should you decide to act upon any information on this website, you do so
+        at your own risk.
+      </p>
+      <p class="post-text">
+        While the information on this website has been verified to the best of
+        our abilities, we cannot guarantee that there are no mistakes or errors.
+      </p>
+      <p class="post-text">
+        We reserve the right to change this policy at any given time, of which
+        you will be promptly updated. If you want to make sure that you are up
+        to date with the latest changes, we advise you to frequently visit this
+        page.
+      </p>
+      <h2 class="sub-heading">Image Usage</h2>
+      <p class="post-text">
+        Images shown on this website are for beautification purposes and in no
+        way meant to cause any uproar or attract traffic.
+        https://www.quinndaisies.com do not lay claim or ownership to any image
+        gotten from the World Wide Web, or from pexel or any other organization,
+        website, web blog, post or social media platform displayed on the
+        website mentioned above.
+      </p>
+      <h2 class="sub-heading">Use of Intellectual Content</h2>
+      <p class="post-text">
+        Any intellectual content shown here are in no way claimed or declared to
+        belong to https://www.quinndaisies.com, intellectual properties shown here
+        are either gotten from free source and always with the knowledge of the
+        author. Such intellectual content includes but not limited to, free
+        Ebooks for Downloads gotten from Amazon kindle and various social media
+        platform, Videos to stream and watch gotten from various social media
+        platforms, while contents are sourced from the personal collection of
+        intellectual works of the author of the websites and when sourced from
+        other platforms or authors, acknowledgements would be given with their
+        consent before being posted on the site. And it the case of use of
+        intellectual content, of other authors a full guarantee of
+        acknowledgement of authors name, and other information would be
+        included.
+      </p>
+      <h2 class="sub-heading">Check Out Our free E books section</h2>
+      <p class="post-text">Its a great read try it out and see.</p>
+      <p class="post-text">
+        <a
+          href="assets\post\The Other Family by Wendy Corsi Staub.pdf"
+          ="Good to great by JimCollins"
+          >Read the Other Family by Wendy Corsi Staub for free</a
+        >
+      </p>
+      <p class="post-text">
+        <a
+          href="assets\post\The Other Family by Wendy Corsi Staub.pdf"
+          ="Good to great by JimCollins"
+          >Purchase Hard Cover and Paperback from Amazon Kindle</a
+        >
+      </p>
+      <p class="post-text">
+        <!--- <a
+                href="assets\post\The Other Family by Wendy Corsi Staub.epub"
+                ="Good to great by JimCollins"
+                >Read Now (Epub Version)</a
+              > ---->
+      </p>
+    </section>
+
+	<div class="container">
+		<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+		  <div class="carousel-indicators">
+		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  </div>
+		  <div class="carousel-inner">
+		    <div class="carousel-item active" data-bs-interval="10000">
+		      <img src="{{ url_for('static', filename= 'images/google.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+		      <div class="carousel-caption d-none d-md-block">
+		        <h5>First slide label</h5>
+		        <p>Some representative placeholder content for the first slide.</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item" data-bs-interval="2000">
+		      <img src="{{ url_for('static', filename= 'images/favicon.png') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+		      <div class="carousel-caption d-none d-md-block">
+		        <h5>Second slide label</h5>
+		        <p>Some representative placeholder content for the second slide.</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item">
+		      <img src="{{ url_for('static', filename= 'images/author.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+		      <div class="carousel-caption d-none d-md-block">
+		        <h5>Third slide label</h5>
+		        <p>Some representative placeholder content for the third slide.</p>
+		      </div>
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+	</div>
+
+{% endblock %}

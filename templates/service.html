@@ -1,0 +1,182 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+      <div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{ url_for('static', filename= 'images/newquinndaisies.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{{ url_for('static', filename= 'images/quinndaisies.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{{ url_for('static', filename= 'images/quinndaisieslogo.png') }}" class="d-block w-100" alt="..." width=1000 max-width="950px" border-radius="20px">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{{ url_for('static', filename= 'images/quinndaisiessearch.png') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+
+  <br/>
+  <br/>
+  <br/>
+
+
+      <!-----posts------>
+      <section class="post-content post-container">
+            <h2 class="sub-heading">Quinn Daisies Services</h2>
+            <p class="post-text">
+                  Quinn Daisies is an extension of Simplimism which started in the year 2016, with a Wordpress Blog at <a href="https://simplimism.wordpress.com"> Simplimism Word Press Site </a> meant to post poetic and other news updates before moving to a Blog Spot site with the same notion. Over the years Simplimism has evolved from a wordpress site to a self built and designed site with added advantages in the areas of Book Reviews, Article writing, Website Development, Software Programming and Book Publications. Simplimism with its author Ebire Folayemi Michael and founder as added skilled training to this platform. Here are some of the Services rendered by Quinn Daisies/Simplimism: 
+            </p>
+
+            <h2 class="sub-heading">Web development:</h2>
+
+            <p class="post-text">
+                  Web Development is a very important part of the human advancement process with various organizations tapping into this field. Quinn Daisies offers Web Development services with the use of HTML, CSS, JAVASCRIPTS, and React,JS for Web Applications to provide its clients with the best Designs available. Check Out some of Simplimism Websites Templates at <a href="https://arcadedesigns.github.io/Avalanche"
+                >Avalanche (An online Web Development Site)</a>, <a href="https://arcadedesigns.github.io/The-Platform">
+                The Platform (An Online library)</a>, and give us a call or send an Email to get started.
+            </p>
+
+            <h2 class="sub-heading"> NOTE: Quinn Daisies offers Web development at extremely Discounted Rates. </h2>
+            <h2 class="sub-heading">Software programming</h2>
+
+            <p class="post-text">
+                  Using Python Programming Language, Quinn Daisies offers Software Development for your computer system, from PDF readers, Converters, and as far as a Database analysis or Management.
+            </p>
+
+            <h2 class="sub-heading">Book publications</h2>
+
+            <p class="post-text">
+                  With extreme knowledge in the use of Amazon Kindle Direct Publishing, Quinn Daisies could help you set your margin appropriately, and your Book Content, review your book with promotions and creation of an Author Page, with just a click if you are a writer and need to publish your article or book, you can get it done here.
+            </p>
+
+            <h2 class="sub-heading">Check Out Our free E books section</h2>
+
+            <p class="post-text">Its a great read try it out and see.</p>
+
+            <p class="post-text">
+                  <a href="assets\post\The Other Family by Wendy Corsi Staub.pdf" alt="Good to great by JimCollins"> Read the Other Family by Wendy Corsi Staub for free </a>
+            </p>
+
+            <p class="post-text">
+                  <a href="assets\post\The Other Family by Wendy Corsi Staub.pdf" alt="Good to great by JimCollins">Purchase Hard Cover and Paperback from Amazon Kindle</a>
+            </p>
+
+            <p class="post-text">
+                  <!--- <a href="assets\post\The Other Family by Wendy Corsi Staub.epub" alt="Good to great by JimCollins"> Read Now (Epub Version)</a> ---->
+            </p>
+      </section>
+
+      <!-------share-------->
+
+      <div class="share post-container">
+            <span class="share-title">Share this Article</span>
+            <div class="social">
+                  <a href="https://www.facebook.com"><i class="bx bxl-facebook"></i></a>
+                  <a href="https://www.twitter.com"><i class="bx bxl-twitter"></i></a>
+                  <a href="https://www.instagram.com"><i class="bx bxl-instagram"></i></a>
+                  <a href="https://www.linkedin.com"><i class="bx bxl-linkedin"></i></a>
+            </div>
+      </div>
+      
+
+      <!-- Importan form your need to deal with
+      <section class="post container">
+            <div class="form-service">
+                  <form onsubmit="sendEmail(); reset(); return false">
+                  </form>
+            </div>
+      </section>
+      -->
+      
+
+      <div class="container">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                  <img src="{{ url_for('static', filename= 'images/google.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="{{ url_for('static', filename= 'images/favicon.png') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="{{ url_for('static', filename= 'images/author.jpg') }}" class="d-block w-100" alt="..." width=1200 border-radius="30px">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+      </div>
+
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+      <script>
+            function sendEmail() {
+              Email.send({
+                Host: "smtp.gmail.com",
+                Username: "quinndaisy.blog@gmail.com",
+                Password: "@Ebire199806",
+                To: "quinndaisy.blog@gmail.com",
+                From: document.getElementById("email").value,
+                Subject: "New Message",
+                Body:
+                  "Topic:" +
+                  document.getElementById("topic").value +
+                  "<br> Email:" +
+                  document.getElementById("email").value +
+                  "<br> Message:" +
+                  document.getElementById("message").value,
+              }).then((message) => alert("Message Successfully Sent"));
+            }
+    </script>
+
+{% endblock %}

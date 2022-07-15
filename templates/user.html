@@ -1,0 +1,249 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<header>
+  <div class="header-content">
+    <h1> Welcome To Hog...Home.Office.Garden...</h1>
+    <div class="line"></div>
+    <p> Unique Designs and setup for your Lifestyle</p>
+  </div>
+</header>
+
+<section class="">
+  <div class="row">
+    <div class="col-md-9">
+    	<div class="container">
+      	
+	      	<h1> Hello {{ current_user.name | title}} </h1>
+	      	<div class="card">
+	      		<div class="card-header">
+	      			<h3><u> Profile Details : </u></h3>
+	      		</div>
+
+	      		{% for message in get_flashed_messages() %}
+
+	      			<div class="alert alert-success alert-dismissible fade show" role="alert">
+	      				Hey {{ name }} - {{ message }}
+	      				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	      			</div>
+
+	      		{% endfor %}
+
+	      		<div class="card-body">
+	      			<p class="card-text">
+	      				<strong> Name : </strong> {{ current_user.name }} <br/>
+	      				<strong>UserName : </strong> {{ current_user.username }} <br/>
+	      				<strong> User Id : </strong> {{ current_user.id }} <br/>
+	      				<strong>Email : </strong> {{ current_user.email }} <br/>
+	      				<strong> Date Joined : </strong> {{ current_user.date_added }} <br/>
+	      				<strong> Profile Pic : </strong> {{ current_user.profile_pic }} <br/><br/>
+						<small><strong>About Author : </strong> {{ current_user.about_author}} </small><br/>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<table class="table table-hover table-bordered table-striped">
+
+			{% for our_user in our_users %}
+				<tr>
+					<td>{{our_user.id}}. Name : <a href= "{{ url_for('update', id=our_user.id) }}"> {{ our_user.name }}</a> <br/> - User Name : {{ our_user.username }} <br/> - Email : {{ our_user.email}} <br/> - PW : {{ our_user.password_hash }} <a href= "{{ url_for('delete', id=our_user.id) }}">Delete</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+
+		<div class="container">
+			<div class="user-section">
+				<h2> View All User Posts </h2> <br/>
+				{% if user == poster_id or curent_user.id %}
+					<div class="row">
+						<div class="col-md-3">
+							{% for post in posts %}
+								{% if post.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ post.title }} <br/> <img src="{{url_for ('static', filename='images/' + post.file )}}"> <br/> <div class="post-description">{{ post.slug}}</div> <br/>{{ post.poster.name }} <br/> {{ post.date_posted }} <br/> User ID: {{ post.poster.id }} <br/>
+												{% if post.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_post', id=post.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('post', id=post.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif %}
+							{% endfor %}
+
+						</div>
+
+						<div class="col-md-3">
+
+							{% for finance in finances %}
+								{% if finance.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ finance.title }} <br/> <img src="{{url_for ('static', filename='images/' + finance.file )}}"> <br/> <div class="post-description">{{ finance.slug}}</div> <br/>{{ finance.poster.name }} <br/> {{ finance.date_posted }} <br/> User ID: {{ finance.poster.id }} <br/>
+												{% if finance.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_finance', id=finance.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('finance', id=finance.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif %}
+							{% endfor %}
+						</div>
+
+						<div class="col-md-3">
+							{% for essay in essays %}
+								{% if essay.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ essay.title }} <br/> <img src="{{url_for ('static', filename='images/' + essay.file )}}"> <br/> <div class="post-description">{{ essay.slug}}</div> <br/>{{ essay.poster.name }} <br/> {{ essay.date_posted }} <br/> User ID: {{ essay.poster.id }} <br/>
+												{% if essay.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_essay', id=essay.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('essay', id=essay.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif %}
+							{% endfor %}
+						</div>
+
+						<div class="col-md-3">
+							{% for health in healths %}
+								{% if health.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ health.title }} <br/> <img src="{{url_for ('static', filename='images/' + health.file )}}"> <br/> <div class="post-description">{{ health.slug}}</div> <br/>{{ health.poster.name }} <br/> {{ health.date_posted }} <br/> User ID: {{ health.poster.id }} <br/>
+												{% if health.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_health', id=health.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('health', id=health.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif%}
+							{% endfor %}
+						</div>
+
+						<div class="col-md-3">
+							{% for business in businesses %}
+								{% if business.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ business.title }} <br/> <img src="{{url_for ('static', filename='images/' + business.file )}}"> <br/> <div class="post-description">{{ business.slug}}</div> <br/>{{ business.poster.name }} <br/> {{ business.date_posted }} <br/> User ID: {{ business.poster.id }} <br/>
+												{% if business.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_business', id=business.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('business', id=business.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif %}
+							{% endfor %}
+						</div>
+
+						<div class="col-md-3">
+							{% for design in designs %}
+								{% if design.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ design.title }} <br/> <img src="{{url_for ('static', filename='images/' + design.file )}}"> <br/> <div class="post-description">{{ design.slug}}</div> <br/>{{ design.poster.name }} <br/> {{ design.date_posted }} <br/> User ID: {{ design.poster.id }} <br/>
+												{% if design.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_design', id=design.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('design', id=design.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif %}
+							{% endfor %}
+						</div>
+
+						<div class="col-md-3">
+							{% for idea in ideas %}
+								{% if idea.poster_id == current_user.id or current_user.id == 1 %}
+									<table class="table table-hover table-bordered table-striped">
+										<tr>
+											<td> {{ idea.title }} <br/> <img src="{{url_for ('static', filename='images/' + idea.file )}}"> <br/> <div class="post-description">{{ idea.slug}}</div> <br/>{{ idea.poster.name }} <br/> {{ idea.date_posted }} <br/> User ID: {{ idea.poster.id }} <br/>
+												{% if idea.poster_id == current_user.id or current_user.id == 1 %}
+													<a href="{{ url_for('delete_idea', id=idea.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('idea', id=idea.id) }}"> View Post </a></td>
+												{% endif %}
+										</tr>
+									</table>
+								{% endif %}
+							{% endfor %}
+						</div>	
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+
+    <div class="col-md-3">
+      <br/>
+      <br/>
+      <div class="vertical-line"></div>
+      <div class="post container">
+        <section class="side-bar">
+          <h3>Quick Facts</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href=""> Our Team</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Submit a Story</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">About Advertising with Us</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Disclaimer</a></li>
+          <div class="horizontal-line"></div>
+        </section>
+
+        <section class="side-bar">
+          <h3>Menu</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href="">Home</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Office</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Garden</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Others</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Service</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Blog</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Sell</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">HOG Pay</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Track it</a></li>
+          <div class="horizontal-line"></div>
+
+        </section>
+
+        <section class="side-bar">
+          <h3>Service</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href="">Auction</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Maintenance</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Subscription</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Testimonials</a></li>
+          <div class="horizontal-line"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

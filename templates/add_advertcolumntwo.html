@@ -1,0 +1,142 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<header>
+  <div class="header-content">
+    <h1> Welcome To Hog...Home.Office.Garden...</h1>
+    <div class="line"></div>
+    <p> Unique Designs and setup for your Lifestyle</p>
+  </div>
+</header>
+
+<section class="">
+	<div class="row">
+		<div class="text-ads">
+			<h1>Publish Adverts</h1>
+			
+		</div>
+		<div class="col-md-9">
+			<div class="container">
+				<div class="text-box">
+					{% if current_user.is_authenticated %}
+						<h2>Paste Advert Section One on the Homepage Button</h2>
+						<p> Publish Advert from this Page </p>
+						<h3>Be Careful, Advets are Published within Minutes</h3>
+						{% for message in get_flashed_messages() %}
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+								Hey {{ name }} - {{ message }}
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+							</div>
+						{% endfor %}
+
+						<div class="login-container">
+							<div class="wrapper">
+								<div class="title"><span>Advertisement</span></div>
+								<form method="POST" type='file' name='file' action="" enctype="multipart/form-data">
+									{{ form.hidden_tag() }}
+									<div class="row">
+										{{ form.title.label (class="pass") }}
+										<br/>
+										{{ form.title(class="input-box") }}
+									</div>
+									<br/>
+
+									<div class="row">
+										<div class="col-md-6">
+											{{ form.percentage.label (class="pass") }}
+											<br/>
+											{{ form.percentage(class="input-box") }}
+										</div>
+									</div>
+									<br/>
+									<br/>
+
+									<div class="row">
+										{{ form.link.label (class="pass") }}
+										<br/>
+										{{ form.link(class="input-box") }}
+									</div>
+									<br/>
+
+									<div class="row">
+										{{ form.slug.label (class="pass") }}
+										<br/>
+										{{ form.slug(class="input-box") }}
+									</div>
+									<br/>
+
+									<div class="row">
+										{{ form.file.label (class="pass") }}
+										<br/>
+										<input type="file" name="file" action="/" class="input" autocomplete="off">
+									</div>
+									<br/>
+
+									<div class="row">
+										{{ form.alt.label (class="pass") }}
+										<br/>
+										{{ form.alt(class="input-box") }}
+									</div>
+									<br/>
+
+									<div class="mb-3">
+										{{ form.content.label (class="form-label") }}
+										{{ form.content(class="form-control", rows="10") }}
+									</div>
+
+									<div class="button">
+										<input type="submit" name="submit" value="Publish Your Ads">
+									</div>
+								</form>
+
+							{{ ckeditor.load() }}
+							{{ ckeditor.config(name='content') }}
+							</div>
+						</div>
+
+					{% else %}
+
+						<h2> You Must Be Logged In... </h2>
+						<p> To gain Access, Login or click on the link below to sign up, If you do not have an Account... </p>
+						<br/>
+						<a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-sm"> Login Here </a> 
+						<a href="{{ url_for('add_user') }}" class="btn btn-outline-secondary btn-sm"> Register an Account </a> 
+					{% endif%}
+				</div>
+			</div>
+		</div>
+
+    
+    <div class="col-md-3">
+    	<div class="container">
+	    	<h2>Admin Menu Page </h2>
+	    	<table class="table table-hover table-bordered table-striped">
+	    		<tr>
+	    			<td>
+	    				<div class="utilities">
+	    					<li><a href=""> Change Slide Show One </a></li>
+	    					<li><a href=""> Change Slide Show Two </a></li>
+	    					<li><a href=""> Change Slide Show Three </a></li>
+	    					<li><a href=""> Change Slide Show Four </a></li>
+	    					<li><a href=""> Trending Post One </a></li>
+	    					<li><a href=""> Trending Post Two </a></li>
+	    					<li><a href=""> Trending Post Three </a></li>
+	    					<li><a href=""> Trending Post Four </a></li>
+	    					<li><a href=""> Trending Post Five </a></li>
+	    					<li><a href="{{ url_for('add_advertcolumnone') }}"> Ads Column One </a></li>
+	    					<li><a href="{{ url_for('add_advertcolumntwo') }}"> Ads Column Two </a></li>
+	    					<li><a href=""> Ads Column Three </a></li>
+	    					<li><a href=""> Ads Column Four </a></li>
+	    					<li><a href=""> Ads Column Five </a></li>
+	    					<li><a href=""> Ads Column Six </a></li>
+	    				</div>
+	    			</td>
+	    		</tr>
+	    	</table>
+	    </div>
+    </div>
+</section>
+<br/>
+<br/>
+{% endblock %}

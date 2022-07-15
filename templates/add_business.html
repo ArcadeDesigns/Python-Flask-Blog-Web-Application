@@ -1,0 +1,169 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<header>
+  <div class="header-content">
+    <h1> Welcome To Hog...Home.Office.Garden...</h1>
+    <div class="line"></div>
+    <p> Unique Designs and setup for your Lifestyle</p>
+  </div>
+</header>
+
+<section class="">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="container">
+				<div class="text-box">
+					{% if current_user.is_authenticated %}
+
+						<h1>You can make an Exquisite Post, but you sure it is Original and Didactic...</h1>
+						<p> News and Events </p>
+						<h3>How to Make a Post</h3>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>
+
+						{% for message in get_flashed_messages() %}
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+								Hey {{ name }} - {{ message }}
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+							</div>
+						{% endfor %}
+
+						<div class="login-container">
+							<div class="wrapper">
+								<div class="title"><span>Post Form</span></div>
+								<form method="POST" type='file' name='file' action="" enctype="multipart/form-data">
+									{{ form.hidden_tag() }}
+									<div class="row">
+										{{ form.title.label (class="pass") }}
+										{{ form.title(class="input") }}
+									</div>
+									<br/>
+
+									<div class="row">
+										{{ form.slug.label (class="pass") }}
+										<br/>
+										{{ form.slug(class="input") }}
+									</div>
+									<br/>
+
+									<div class="row">
+										{{ form.file.label (class="pass") }}
+										<br/>
+										<input type="file" name="file" action="/" class="input" autocomplete="off">
+									</div>
+									<br/>
+
+									<div class="row">
+										{{ form.alt.label (class="pass") }}
+										<br/>
+										{{ form.alt(class="inputl") }}
+									</div>
+									<br/>
+
+									<div class="mb-3">
+										{{ form.content.label (class="form-label") }}
+										{{ form.content(class="form-control", rows="10") }}
+									</div>
+						
+									<div class="button">
+										<input type="submit" name="submit" value="Publish Post">
+									</div>
+								</form>
+
+							{{ ckeditor.load() }}
+							{{ ckeditor.config(name='content') }}
+							</div>
+						</div>
+
+					{% else %}
+
+						<h2> You Must Be Logged In... </h2>
+						<p> To gain Access, Login or click on the link below to sign up, If you do not have an Account... </p>
+						<br/>
+						<a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-sm"> Login Here </a> 
+						<a href="{{ url_for('add_user') }}" class="btn btn-outline-secondary btn-sm"> Register an Account </a> 
+					{% endif%}
+				</div>
+			</div>
+		</div>
+
+    
+    <div class="col-md-3">
+      <br/>
+      <br/>
+      <div class="vertical-line"></div>
+      <div class="post container">
+        <section class="side-bar">
+          <h3>Quick Facts</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href=""> Our Team</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Submit a Story</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">About Advertising with Us</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Disclaimer</a></li>
+          <div class="horizontal-line"></div>
+        </section>
+
+        <section class="side-bar">
+          <h3>Menu</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href="">Home</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Office</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Garden</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Others</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Service</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Blog</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Sell</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">HOG Pay</a></li>
+          <div class="horizontal-line"></div>
+
+          <li><a href="">Track it</a></li>
+          <div class="horizontal-line"></div>
+
+        </section>
+
+        <section class="side-bar">
+          <h3>Service</h3>
+          <div class="line-side-bar"></div>
+
+          <li><a href="">Auction</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Maintenance</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Subscription</a></li>
+          <div class="horizontal-line"></div>
+          
+          <li><a href="">Testimonials</a></li>
+          <div class="horizontal-line"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<br/>
+<br/>
+{% endblock %}

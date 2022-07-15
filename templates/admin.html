@@ -1,0 +1,166 @@
+
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<header>
+  <div class="header-content">
+    <h1> Welcome To Hog...Home.Office.Garden...</h1>
+    <div class="line"></div>
+    <p> Unique Designs and setup for your Lifestyle</p>
+  </div>
+</header>
+
+<div class="admin-section">
+	<h1> Adminitrator</h1>
+	<div class="row">
+		<div class="col-6">
+			<h2> View Users</h2>
+			{% for our_user in our_users %}
+				<div class="admin-container-container container">
+					<table class="table table-hover table-bordered table-striped">
+								<tr>
+									<td>{{our_user.id}}. Name : <a href= "{{ url_for('update', id=our_user.id) }}"> {{ our_user.name }}</a> <br/> {% if our_user.profile_pic %}
+										<img src="{{url_for ('static', filename='images/' + our_user.profile_pic)}}">
+									{% else %}
+										<img src="{{url_for ('static', filename='images/defaultuser.jpg')}}">
+									{% endif %} <br/> - User Name : {{ our_user.username }} <br/> - Email : {{ our_user.email}} <br/> <a href= "{{ url_for('delete', id=our_user.id) }}">Delete</a></td>
+								</tr>
+							</div>
+						</div>
+					</table>
+				</div>
+			{% endfor %}			
+		</div>
+
+		<div class="col-md-3">
+			<h2>View All Blog Post</h2>
+			{% for post in posts %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ post.title }} <br/> <img src="{{url_for ('static', filename='images/' + post.file )}}"> <br/><div class="post-description">{{ post.slug}}</div> <br/>{{ post.poster.name }} <br/> {{ post.date_posted }} <br/> User ID: {{ post.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_post', id=post.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('post', id=post.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+
+			{% for finance in finances %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ finance.title }} <br/> <img src="{{url_for ('static', filename='images/' + finance.file )}}"> <br/> <div class="post-description">{{ finance.slug}}</div> <br/>{{ finance.poster.name }} <br/> {{ finance.date_posted }} <br/> User ID: {{ finance.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_finance', id=finance.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('finance', id=finance.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+
+			{% for essay in essays %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ essay.title }} <br/> <img src="{{url_for ('static', filename='images/' + essay.file )}}"> <br/> <div class="post-description">{{ essay.slug}}</div> <br/>{{ essay.poster.name }} <br/> {{ essay.date_posted }} <br/> User ID: {{ essay.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_essay', id=essay.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('essay', id=essay.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+
+			{% for health in healths %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ health.title }} <br/> <img src="{{url_for ('static', filename='images/' + health.file )}}"> <br/> <div class="post-description">{{ health.slug}}</div> <br/>{{ health.poster.name }} <br/> {{ health.date_posted }} <br/> User ID: {{ health.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_health', id=health.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('health', id=health.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+
+			{% for business in businesses %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ business.title }} <br/> <img src="{{url_for ('static', filename='images/' + business.file )}}"> <br/> <div class="post-description">{{ business.slug}}</div> <br/>{{ business.poster.name }} <br/> {{ business.date_posted }} <br/> User ID: {{ business.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_business', id=business.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('business', id=business.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+
+			{% for design in designs %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ design.title }} <br/> <img src="{{url_for ('static', filename='images/' + design.file )}}"> <br/> <div class="post-description">{{ design.slug}}</div> <br/>{{ design.poster.name }} <br/> {{ design.date_posted }} <br/> User ID: {{ design.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_design', id=design.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('design', id=design.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+
+			{% for design in designs %}
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<td> {{ design.title }} <br/> <img src="{{url_for ('static', filename='images/' + design.file )}}"> <br/> <div class="post-description">{{ design.slug}}</div> <br/>{{ design.poster.name }} <br/> {{ design.date_posted }} <br/> User ID: {{ design.poster.id }} <br/>
+							{% if current_user.id == 1 %}
+								<a href="{{ url_for('delete_design', id=design.id) }}"> Delete Post </a> &nbsp;&nbsp; <a href="{{ url_for('design', id=design.id) }}"> View Post </a></td>
+							{% endif %}
+					</tr>
+				</table>
+			{% endfor %}
+		</div>
+		
+
+		<div class="col-md-3">
+			<section class="side-bar container">
+				<h2>Admin Menu Page </h2>
+				<div class="line-side-bar"></div>
+
+				<li><a href=""> Change Slide Show Four </a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href="">Office</a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href=""> Trending Post Five </a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href="{{ url_for('add_advertcolumnone') }}"> Ads Column One </a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href="{{ url_for('add_advertcolumntwo') }}"> Ads Column Two </a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href="{{ url_for('add_advertcolumnthree') }}"> Ads Column Three </a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href="{{ url_for('add_advertcolumnfour') }}"> Ads Column Four </a></li>
+				<div class="horizontal-line"></div>
+
+
+				<li><a href=""> Ads Column Five </a></li>
+				<div class="horizontal-line"></div>
+
+				<li><a href=""> Ads Column Six </a></li>
+				<div class="horizontal-line"></div>
+			</section>
+
+			<section class="side-bar">
+				<h2> View All Active Adverts </h2>
+				<div class="line-side-bar"></div>
+				{% for advertone in advertones %}
+					<li><a href="{{ url_for('advertones', id=advertone.id) }}"> View All Ads </a></li>
+				{% endfor %}
+
+				{% for adverttwo in adverttwos %}
+					<li><a href="{{ url_for('adverttwos', id=adverttwo.id) }}"> View All Ads </a></li>
+				{% endfor %}
+			</section>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<div class="container">
+	<h1> Edit Post : </h1>
+
+	{% for message in get_flashed_messages() %}
+
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			Hey {{ name }} - {{ message }}
+	  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+	{% endfor %}
+
+	<div class="shadow p-3 mb-5 bg-body rounded">
+
+		<form method="POST" type='file' name='file' action="" enctype="multipart/form-data">
+
+			{{ form.hidden_tag() }}
+
+
+			{{ form.title.label (class="form-label") }}
+			{{ form.title(class="form-control") }}
+			<br/>
+
+			{{ form.category.label (class="form-label") }}
+			{{ form.category(class="form-control") }}
+			<br/>
+
+			{{ form.file.label (class="form-label") }}
+			<input type="file" name="file" action="/" class="form-control" autocomplete="off">
+			<br/>
+
+			{{ form.alt.label (class="form-label") }}
+			{{ form.alt(class="form-control") }}
+			<br/>
+
+			{{ form.slug.label (class="form-label") }}
+			{{ form.slug(class="form-control") }}
+			<br/>
+
+			{{ form.content.label (class="form-label") }}
+			{{ form.content(class="form-control", rows="10") }}
+			<br/>
+
+			{{ form.submit(class="btn btn-outline-secondary btn-sm") }}
+
+		</form>
+
+		{{ ckeditor.load() }}
+ 		{{ ckeditor.config(name='content') }}
+
+	</div>
+
+	<br/>
+	<br/>
+
+	<a href="{{ url_for('trendings') }}" class="btn btn-outline-secondary btn-sm"> Back To Blog </a>
+
+</div>
+
+{% endblock %}

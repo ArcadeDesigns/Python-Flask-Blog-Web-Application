@@ -1,0 +1,122 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<header>
+	<div class="header-content">
+		<h1> Welcome To Hog...Dashboard Page...</h1>
+		<div class="line"></div>
+		<p> Users can update their profile from the page</p>
+	</div>
+</header>
+
+<section class="container-container">
+	<h1>User Dashboard Page</h1>
+	<div class="dashboard-container">
+		<div class="dashboard-title">
+			<h2> Dashboard </h2>
+		</div>
+
+		<div class="dashboard-content">
+			<h2> {{ current_user.name | title }} </h2>
+			<h3> Profile and Details</h3>
+
+			{% for message in get_flashed_messages() %}
+
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					Hey {{ current_user.name }} - {{ message }}
+					<button type="bu tton" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+			{% endfor %}
+
+			<div class="row">
+				<div class="col-8">
+					<div class="details-container">
+						<strong> Name : </strong> {{ current_user.name}} <br/>
+						<strong>UserName : </strong> {{ current_user.username}} <br/>
+						<strong> User Id : </strong> {{ current_user.id}} <br/>
+						<strong>Email : </strong> {{ current_user.email}} <br/>
+						<strong> Date Joined : </strong> {{ current_user.date_added}} <br/>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="profile-container">
+						{% if current_user.profile_pic %}
+							<img src="{{url_for ('static', filename='images/' + current_user.profile_pic)}}" width= "100%" align=right>
+						{% else %}
+							<img src="{{url_for ('static', filename='images/defaultuser.jpg')}}" alt="Profile Image Here" width= "100%" align=right>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="details-btn">
+				<a href= "{{ url_for('update', id=current_user.id) }}" class="btn btn-outline-secondary"> Goto Update Profile Page </a>
+				<a href=" {{ url_for('logout') }} " class="btn btn-outline-success"> Logout </a>
+			</div>
+
+			<br/>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div class="title"><span>Update Your Profile From the Dashboard... </span></div>
+				<div class="title-identity">
+					<span>User Identification: {{ id }}</span> 
+					<br/>
+					<span>Current Identification: {{ current_user.id }}</span>
+					<br/>
+					<span>Email: {{ current_user.email }}</span> 
+				</div>
+
+				<form action="/update/{{ name_to_update.id }}" method="POST" enctype="multipart/form-data" >
+
+					{{ form.hidden_tag() }}
+
+						<div class="row">
+							<i class="fas fa-address-card"></i>
+							{{ form.name(class="input", value=name_to_update.name) }}
+						</div>
+
+						<div class="row">
+							<i class="fas fa-user"></i>
+							{{ form.username(class="input", value=name_to_update.username) }}
+						</div>
+
+						<div class="row">
+							<i class="fas fa-envelope"></i>
+							{{ form.email(class="input", value=name_to_update.email) }}
+						</div>
+
+						<div class="row">
+							<i class="fas fa-users"></i>
+							<textarea name="about_author" class="input">{{ name_to_update.about_author }}</textarea>
+						</div>
+
+						{{ form.profile_pic.label (class="pass") }}
+						<div class="row">
+							<i class="fa fa-picture-o"></i>
+							{{ form.profile_pic(class="input", value=name_to_update.profile_pic) }}
+						</div>
+
+						<div class="button-button">
+							<input type="submit" name="submit" value="Update Details">
+						</div>
+				</form>
+		</div>
+	</div>
+
+	<div class="hr-container">
+		<p>More Details</p>
+		<hr/>
+	</div>
+
+	<div class="dashboard-container">
+		<strong>About Author : </strong> {{ current_user.about_author}} <br/>
+	</div>
+</section>
+
+{% endblock %}

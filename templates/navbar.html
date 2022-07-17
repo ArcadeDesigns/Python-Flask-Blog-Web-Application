@@ -2,7 +2,35 @@
   <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename= 'images/hog_image.png') }}" class="hog-img"></a>
 
   <ul class="nav-links">
-    <img src="{{url_for ('static', filename='images/menu-icon-black.png' )}}" class="menu-btn">
+    <div class="menu-btn">
+      <div class="dropdown">
+        <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Menu
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          
+          {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('update', id=current_user.id) }}">Update Profile</a></li>
+            <li><a href="{{ url_for('user') }}">User Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+              {% if current_user.id == 1 %}
+
+                <li><a href="{{ url_for('admin') }}">Logout</a></li>
+
+              {% endif %}
+
+          {% else %}
+
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('add_user') }}">Signup</a></li>
+
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
     <div class="search-form">
       <form method="POST" action=" {{ url_for('search')}}">
         <div class="row">
@@ -23,19 +51,19 @@
         </ul>
       </li>
 
-        <li class="drop-nav"><a href="{{ url_for('contribute') }}"><p>View Post &nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></p></a>
+        <li class="drop-nav"><a href="#"><p>View Post &nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></p></a>
           <ul>
-            <li class="drop-menu"><a href="{{ url_for('finances') }}"> Buying Guide</a></li>
-            <li class="drop-menu"><a href="{{ url_for('essays') }}"> DIY (Do It Yourself)</a></li>
-            <li class="drop-menu"><a href="{{ url_for('healths') }}"> Health & Wellness</a></li>
-            <li class="drop-menu"><a href="{{ url_for('ideas') }}"> Ideas and Inspirations</a></li>
-            <li class="drop-menu"><a href="{{ url_for('businesses') }}"> News and Events</a></li>
-            <li class="drop-menu"><a href="{{ url_for('organises') }}"> Organising & Cleaning</a></li>
-            <li class="drop-menu"><a href="{{ url_for('greens') }}"> Plants</a></li>
-            <li class="drop-menu"><a href="{{ url_for('posts') }}"> Gardening Tips</a></li>
-            <li class="drop-menu"><a href="{{ url_for('designs') }}"> Small Spaces</a></li>
-            <li class="drop-menu"><a href="{{ url_for('contribute') }}"> HOG TV</a></li>
-            <li class="drop-menu"><a href="{{ url_for('contribute') }}"> Submit a Story</a></li>
+            <li><a href="{{ url_for('finances') }}"> Buying Guide</a></li>
+            <li><a href="{{ url_for('essays') }}"> DIY (Do It Yourself)</a></li>
+            <li><a href="{{ url_for('healths') }}"> Health & Wellness</a></li>
+            <li><a href="{{ url_for('ideas') }}"> Ideas and Inspirations</a></li>
+            <li><a href="{{ url_for('businesses') }}"> News and Events</a></li>
+            <li><a href="{{ url_for('organises') }}"> Organising & Cleaning</a></li>
+            <li><a href="{{ url_for('greens') }}"> Plants</a></li>
+            <li><a href="{{ url_for('posts') }}"> Gardening Tips</a></li>
+            <li><a href="{{ url_for('designs') }}"> Small Spaces</a></li>
+            <li><a href="{{ url_for('contribute') }}"> HOG TV</a></li>
+            <li><a href="{{ url_for('contribute') }}"> Submit a Story</a></li>
           </ul>
         </li>
 

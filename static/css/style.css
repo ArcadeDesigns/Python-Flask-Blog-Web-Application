@@ -1799,8 +1799,11 @@ nav ul ul ul li{
         margin: 20px auto;
     }
     .hog-img{
-        width: 35px;
+        width: 45px;
         max-width: 100%;
+    }
+    .menu-btn .dropdown .dropdown-menu li a{
+        font-size: 1rem;
     }
     .filter-item {
         display: none;

@@ -33,3 +33,114 @@
     </form>
   </div>
 </nav>
+
+
+<nav class="navbar">
+  <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename= 'images/hog_image.png') }}" class="hog-img"></a>
+
+  <ul class="nav-links">
+    <img src="{{url_for ('static', filename='images/menu-icon-black.png' )}}" class="menu-btn">
+    <div class="search-form">
+      <form method="POST" action=" {{ url_for('search')}}">
+        <div class="row">
+          <input type="search" name="searched" placeholder="Search Here...">
+          <i class="fas fa-search"></i>
+        </div>
+      </form>
+    </div>
+
+    {% if current_user.is_authenticated %}
+
+      <li class="drop-nav"><a href="{{ url_for('dashboard') }}"><p>Personal &nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></p></a>
+        <ul>
+          <li class="active"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+          <li class="active"><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li class="active"><a href="{{ url_for('update', id=current_user.id) }}">Update Profile</a></li>
+          <li class="active"><a href="{{ url_for('user') }}">User Profile</a></li>
+        </ul>
+      </li>
+
+        <li class="drop-nav"><a href="{{ url_for('contribute') }}"><p>View Post &nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></p></a>
+          <ul>
+            <li><a href="{{ url_for('finances') }}"> Buying Guide</a></li>
+            <li><a href="{{ url_for('essays') }}"> DIY (Do It Yourself)</a></li>
+            <li><a href="{{ url_for('healths') }}"> Health & Wellness</a></li>
+            <li><a href="{{ url_for('ideas') }}"> Ideas and Inspirations</a></li>
+            <li><a href="{{ url_for('businesses') }}"> News and Events</a></li>
+            <li><a href="{{ url_for('organises') }}"> Organising & Cleaning</a></li>
+            <li><a href="{{ url_for('greens') }}"> Plants</a></li>
+            <li><a href="{{ url_for('posts') }}"> Gardening Tips</a></li>
+            <li><a href="{{ url_for('designs') }}"> Small Spaces</a></li>
+            <li><a href="{{ url_for('contribute') }}"> HOG TV</a></li>
+            <li><a href="{{ url_for('contribute') }}"> Submit a Story</a></li>
+          </ul>
+        </li>
+
+        <li class="drop-nav"><a href="{{ url_for('contribute') }}"><p>Contribute &nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></p></a>
+          <ul>
+            <li><a href="{{ url_for('add_finance') }}"> Buying Guide</a></li>
+            <li><a href="{{ url_for('add_essay') }}"> DIY (Do It Yourself)</a></li>
+            <li><a href="{{ url_for('add_health') }}"> Health & Wellness</a></li>
+            <li><a href="{{ url_for('add_idea') }}"> Ideas and Inspirations</a></li>
+            <li><a href="{{ url_for('add_business') }}"> News and Events</a></li>
+            <li><a href="{{ url_for('add_organise') }}"> Organising & Cleaning</a></li>
+            <li><a href="{{ url_for('add_green') }}"> Plants</a></li>
+            <li><a href="{{ url_for('add_post') }}"> Gardening Tips</a></li>
+            <li><a href="{{ url_for('add_design') }}"> Small Spaces</a></li>
+            <li><a href="{{ url_for('contribute') }}"> HOG TV</a></li>
+            <li><a href="{{ url_for('contribute') }}"> Submit a Story</a></li>
+          </ul>
+        </li>
+
+        {% if current_user.id == 1 %}
+
+          <li class="drop-nav"><a href="{{ url_for('admin') }}"><p>Admin &nbsp;&nbsp;<i class="fa " aria-hidden="true"></i></p></a></li>
+
+        {% endif %}
+
+    {% else %}
+
+        <li class="drop-nav"><a href="{{ url_for('index') }}"><p><i class="fa fa-home" aria-hidden="true"></i></p></a></li>
+
+        <li class="drop-nav"><a href="{{ url_for('contribute') }}"><p>Account &nbsp;&nbsp;<i class="fa fa-user" aria-hidden="true"></i></p></a>
+          <ul>
+            <li class="active"><a href="{{ url_for('add_user') }}">Create Account</a></li>
+            <li class="active"><a href="{{ url_for('login') }}">Log in</a></li>
+          </ul>
+        </li>
+
+        <li class="drop-nav"><a href="{{ url_for('contribute') }}"><p>Blog Post &nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></p></a>
+        <ul>
+          <li><a href="{{ url_for('finances') }}"> Buying Guide</a></li>
+          <li><a href="{{ url_for('essays') }}"> DIY (Do It Yourself)</a></li>
+          <li><a href="{{ url_for('healths') }}"> Health & Wellness</a></li>
+          <li><a href="{{ url_for('ideas') }}"> Ideas and Inspirations</a></li>
+          <li><a href="{{ url_for('businesses') }}"> News and Events</a></li>
+          <li><a href="{{ url_for('organises') }}"> Organising & Cleaning</a></li>
+          <li><a href="{{ url_for('greens') }}"> Plants</a></li>
+          <li><a href="{{ url_for('posts') }}"> Gardening Tips</a></li>
+          <li><a href="{{ url_for('designs') }}"> Small Spaces</a></li>
+          <li><a href="{{ url_for('contribute') }}"> HOG TV</a></li>
+          <li><a href="{{ url_for('contribute') }}"> Submit a Story</a></li>
+        </ul>
+      </li>
+      <li><a href="#">&nbsp;&nbsp;</a></li>
+    {% endif %}
+  </ul>
+
+  <div class="post-filter container-container">
+    <a href="{{ url_for('finances') }}" class="filter-item"> Buying Guide</a></li>
+    <a href="{{ url_for('essays') }}" class="filter-item"> DIY (Do It Yourself)</a></li>
+    <a href="{{ url_for('healths') }}" class="filter-item"> Health & Wellness</a></li>
+    <a href="{{ url_for('ideas') }}" class="filter-item"> Ideas and Inspirations</a></li>
+    <a href="{{ url_for('businesses') }}" class="filter-item"> News and Events</a></li>
+    <a href="{{ url_for('organises') }}" class="filter-item"> Organising & Cleaning</a></li>
+    <a href="{{ url_for('greens') }}" class="filter-item"> Plants</a></li>
+    <a href="{{ url_for('posts') }}" class="filter-item"> Gardening Tips</a></li>
+    <a href="{{ url_for('designs') }}" class="filter-item"> Small Spaces</a></li>
+    <a href="{{ url_for('contribute') }}" class="filter-item"> HOG TV</a></li>
+    <a href="{{ url_for('contribute') }}" class="filter-item"> Submit a Story</a></li>
+  </div>
+</nav>
+
+
